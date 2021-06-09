@@ -2,6 +2,11 @@ pipeline{
   
   agent any
   
+  environment{
+    SERVER_CREDENTIALS = credentials('fee11ee8-e14f-4982-ad78-8ba66a828838')
+  }
+  
+  
   stages{
     
     stage("build"){
@@ -15,7 +20,7 @@ pipeline{
       
       steps{
         echo 'testing the application...'
-        echo jenkins ${NODE_NAME} ${JOB_NAME} ${EXECUTOR_NUMBER}
+        echo "jenkins ${NODE_NAME} ${JOB_NAME} ${EXECUTOR_NUMBER}"
       } 
     }    
     
@@ -23,6 +28,8 @@ pipeline{
       
       steps{
         echo 'deploying the application...'
+        echo "deploying with ${SERVER_CREDENTIALS}"
+        sh "${SERVER_CREDENTIALS}"
       } 
     }
   }
@@ -30,7 +37,7 @@ pipeline{
   post{
     
     always{
-     echo jenkins-${NODE_NAME}-${JOB_NAME}-${EXECUTOR_NUMBER}
+     echo "jenkins-${NODE_NAME}-${JOB_NAME}-${EXECUTOR_NUMBER}"
     }
     success{
       echo BUILD_NUMBER
