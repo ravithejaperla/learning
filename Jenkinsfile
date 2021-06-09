@@ -15,7 +15,7 @@ pipeline{
       
       steps{
         echo 'testing the application...'
-        echo 'jenkins-${NODE_NAME}-${JOB_NAME}-${EXECUTOR_NUMBER}'
+        echo jenkins-${NODE_NAME}-${JOB_NAME}-${EXECUTOR_NUMBER}
       } 
     }    
     
@@ -30,7 +30,7 @@ pipeline{
   post{
     
     always{
-     echo 'jenkins-${NODE_NAME}-${JOB_NAME}-${EXECUTOR_NUMBER}'
+     echo jenkins-${NODE_NAME}-${JOB_NAME}-${EXECUTOR_NUMBER}
     }
     success{
       echo BUILD_NUMBER
